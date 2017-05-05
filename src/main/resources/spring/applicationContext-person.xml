@@ -12,6 +12,20 @@
 	http://www.springframework.org/schema/context    
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <import resource="applicationContext-db.xml"/>
-    <import resource="applicationContext-person.xml"/>
+    <bean class="com.lw.oa.dao.impl.PersonDaoImpl" id="personDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean class="com.lw.oa.service.impl.PersonServiceImpl" id="personService">
+        <property name="personDao" ref="personDao"/>
+    </bean>
+    <!--
+        每次请求都会创建一个action
+        Spring默认只会创建一个实例的,但是struts2是多实例的
+        在getBean的时候才会创建对象
+    -->
+    <bean class="com.lw.oa.action.PersonAction" id="personAction" scope="prototype">
+        <property name="personService" ref="personService"></property>
+    </bean>
+
 </beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.ui.theme" value="simple"/>
+    <!--
+        使用自己的ObjectFactory创建action
+        <constant name="struts.objectFactory" value="myof"/>
+        <bean class="com.lw.oa.factory.MyObjectFactory"
+              name="myof" type="com.opensymphony.xwork2.ObjectFactory"/>
+    -->
+    <include file="struts2/struts-person.xml"></include>
+</struts>
