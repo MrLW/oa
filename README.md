@@ -183,3 +183,68 @@ this.init_TraditionalXmlConfigurations();
 
 
 
+## struts2高级特性
+
+当struts2给我们的结果集不满足需求时,则需要我们自定义结果期。
+
+步骤：
+
+* 1、创建一个类继承Result/StrutsResultSupport,重写execute/doExecute方法.
+```
+public class AjaxResult implements Result {
+
+    private String dataA;
+    private String dataB ;
+
+    public String getDataA() {
+        return dataA;
+    }
+
+    public void setDataA(String dataA) {
+        this.dataA = dataA;
+    }
+
+    public String getDataB() {
+        return dataB;
+    }
+
+    public void setDataB(String dataB) {
+        this.dataB = dataB;
+    }
+
+    public void execute(ActionInvocation actionInvocation) throws Exception {
+        System.out.println("dataA:" + dataA );
+        System.out.println("dataB:" + dataB );
+        ServletActionContext.getResponse().getWriter().print("aaa");
+
+    }
+}
+
+```
+* 2、在struts.xml中创建结果集
+
+```
+<package name="ajax" namespace="/" extends="struts-default">
+        <!--自定义结果集,实现不刷新-->
+        <result-types>
+            <result-type name="ajax" class="com.lw.oa.struts2.result.AjaxResult"></result-type>
+        </result-types>
+</package>
+```
+* 3、使用
+```
+<package name="test" namespace="/" extends="ajax">
+
+    <action name="resultAction_*" method="{1}" class="com.lw.oa.struts2.action.ResultAction">
+        <result type="ajax">
+            <!--给结果集设置数据-->
+            <param name="dataA">数据A</param>
+            <param name="dataB">数据B</param>
+        </result>
+    </action>
+</package>
+```
+* Result:无刷新操作时,StrutsResultSupport:有刷新操作时
+
+
+

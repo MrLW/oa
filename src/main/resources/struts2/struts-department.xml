@@ -4,9 +4,9 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="person" namespace="/" extends="struts-default">
-		<action name="personAction_*" method="{1}" class="personAction">
-
+	<package name="system" namespace="/" extends="struts-default">
+		<action name="departmentAction_*" method="{1}" class="departmentAction">
+			<result name="listAction">WEB-INF/jsp/system/department/list.jsp</result>
 		</action>
 	</package>
 </struts>

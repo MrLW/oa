@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="test" namespace="/" extends="ajax">
+
+        <action name="resultAction_*" method="{1}" class="com.lw.oa.struts2.action.ResultAction">
+            <result type="ajax">
+                <!--给结果集设置数据-->
+                <param name="dataA">数据A</param>
+                <param name="dataB">数据B</param>
+            </result>
+        </action>
+    </package>
+</struts>

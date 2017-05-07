@@ -12,5 +12,12 @@
         <bean class="com.lw.oa.factory.MyObjectFactory"
               name="myof" type="com.opensymphony.xwork2.ObjectFactory"/>
     -->
-    <include file="struts2/struts-person.xml"></include>
+    <include file="struts2/struts-department.xml"></include>
+    <include file="struts2/struts-result.xml"/>
+    <package name="ajax" namespace="/" extends="struts-default">
+        <!--自定义结果集,实现不刷新-->
+        <result-types>
+            <result-type name="ajax" class="com.lw.oa.struts2.result.AjaxResult"></result-type>
+        </result-types>
+    </package>
 </struts>
